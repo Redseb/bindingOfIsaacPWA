@@ -1,0 +1,23 @@
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+html{
+    max-height: 100vh;
+    background-color: #212529;
+}
+
+.main{
+    min-height: 98vh;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
