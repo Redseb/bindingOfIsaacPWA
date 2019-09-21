@@ -1,8 +1,8 @@
 //Service Worker responsible for most PWA stuff
 
 //Update cache name every update
-const staticCacheName = 'site-static-v2'
-const dynamicCacheName = 'site-dynamic-v2'
+const staticCacheName = 'site-static-v5'
+const dynamicCacheName = 'site-dynamic-v5'
 const assets = [
     '/',
     '/index.html',
@@ -71,21 +71,24 @@ self.addEventListener('activate', (evt) => {
 
 // Fetch event listener
 self.addEventListener('fetch', (evt) => {
-    evt.respondWith(
-        caches.match(evt.request)
-            .then(cacheRes => {
-                return cacheRes || fetch(evt.request).then(fetchRes => {
-                    return caches.open(dynamicCacheName).then(cache => {
-                        cache.put(evt.request.url, fetchRes.clone());
-                        limitCacheSize(dynamicCacheName, 15);
-                        return fetchRes;
+    // cache everything except firestore cuz we have indexdb
+    if(evt.request.url.indexOf('firestore.googleapis.com') === -1 && evt.request.url.indexOf('bindingofisaacre_gamepedia') === -1){
+        evt.respondWith(
+            caches.match(evt.request)
+                .then(cacheRes => {
+                    return cacheRes || fetch(evt.request).then(fetchRes => {
+                        return caches.open(dynamicCacheName).then(cache => {
+                            cache.put(evt.request.url, fetchRes.clone());
+                            // limitCacheSize(dynamicCacheName, 15);
+                            return fetchRes;
+                        });
                     });
-                });
-            }).catch(() => { //fallback html page
-                if(evt.request.url.indexOf('.html') > -1){
-                    return caches.match('/pages/fallback.html')
-                }
-            })
-    );
+                }).catch(() => { //fallback html page
+                    if(evt.request.url.indexOf('.html') > -1){
+                        return caches.match('/pages/fallback.html')
+                    }
+                })
+        );
+    }
 
 });
