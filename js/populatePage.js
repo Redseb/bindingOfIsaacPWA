@@ -29,7 +29,8 @@ switch(category){
 }
 
 const addItem = (itemName, itemImage) => {
-    if (itemImage === null){
+    console.log(itemImage);
+    if (itemImage === undefined){
         html = `
         <div class="item nes-container with-title is-dark">
             <p class="title characterName">${itemName}</p>

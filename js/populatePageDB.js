@@ -1,6 +1,6 @@
 const addItemDB = (data, id) => {
     const list = document.querySelector('.container');    
-    if (data.imageUrl === null){
+    if (data.imageUrl === undefined){
         html = `
         <div class="item nes-container with-title is-dark" data-id=${id}>
             <p class="title characterName">${data.title}</p>
@@ -22,4 +22,16 @@ const addItemDB = (data, id) => {
     }
     list.innerHTML += html;
 }
+
+function setLoader(){
+    setTimeout(removeLoader, 3000);
+    document.getElementById('content').style.display = 'none';
+}
+
+function removeLoader(){
+    document.getElementById('loader').style.display = 'none';
+    document.getElementById('content').style.display = '';
+}
+
+setLoader();
 
