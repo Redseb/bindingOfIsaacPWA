@@ -24,7 +24,7 @@ const addItemDB = (data, id) => {
 }
 
 function setLoader(){
-    setTimeout(removeLoader, 3000);
+    setTimeout(removeLoader, 1000);
     document.getElementById('content').style.display = 'none';
 }
 
