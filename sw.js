@@ -1,15 +1,16 @@
 //Service Worker responsible for most PWA stuff
 
 //Update cache name every update
-const staticCacheName = 'site-static-v12'
-const dynamicCacheName = 'site-dynamic-v12'
+const staticCacheName = 'site-static-v13'
+const dynamicCacheName = 'site-dynamic-v13'
 const assets = [
     '/',
     '/index.html',
     '/js/app.js',
     '/js/populatePage.js',
     '/js/populatePageDB.js',
-    '/itemDb.js',
+    '/js/itemDb.js',
+    '/js/searchItems.js',
     '/css/listStyle.css',
     '/css/mainStyle.css',
     '/css/nes.css',
